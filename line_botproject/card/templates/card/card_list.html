@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}カード一覧{% endblock %}
+  
+{% block content %}
+  {% for item in object_list %}
+  <div class="card">
+    <h5 class="card-header">問題：{{ item.question }}</h5>
+    <div class="card-body">
+      <h6 class="card-text">答え：{{ item.answer }}</h6>
+      <p class="card-title">教科：{{ item.subject }}</p>
+      <a href="{% url 'detail-card' item.pk %}" class="btn btn-primary">詳細へ</a>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock content%}
