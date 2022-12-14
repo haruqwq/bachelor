@@ -9,7 +9,7 @@
       <a href="{% url 'list-card' %}" class="btn btn-primary">一覧へ</a>
       <a href="{% url 'update-card' object.pk %}" class="btn btn-primary">編集する</a>
       <a href="{% url 'detail-card' object.pk %}" class="btn btn-primary">削除する</a>
-      <h6 class="card-title">{{ object.subject }}</h6>
+      <h6 class="card-title">{{ object.question }}</h6>
     </div>
   </div>
 {% endblock content%}

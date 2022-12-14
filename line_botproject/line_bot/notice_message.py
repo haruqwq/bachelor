@@ -75,7 +75,7 @@ def spend_time(spend_check, i):
     # 開発用の時間
     one_minute = 60
     post = Card.objects.get(id=message_creater.m[i])
-    if spend_check > one_minute*60 and post.review>=6:
+    if spend_check > one_minute*60 and post.review>=5:
         post.review=6
         post.save()
         print("1時間経過:" + post.question)

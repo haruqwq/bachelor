@@ -6,8 +6,8 @@ import datetime
 class Card(models.Model):
   created_at = models.DateTimeField('登録日時', auto_now_add=True)
   updated_at = models.DateTimeField('更新日時', auto_now=True)
-  review = models.IntegerField('復習回数,')
-  review_count = models.IntegerField('やり直し回数')
+  review = models.IntegerField('復習回数',default = 0)
+  review_count = models.IntegerField('やり直し回数',default = 0)
   question = models.TextField('問題',default='問題')
   answer_fake1 = models.CharField('選択肢1',max_length=100,default='選択肢1')
   answer_fake2 = models.CharField('選択肢2',max_length=100,default='選択肢2')

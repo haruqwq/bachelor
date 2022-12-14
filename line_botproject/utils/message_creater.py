@@ -37,7 +37,7 @@ def isint(s):
     else:
         return True
 
-message_list = ["全部の問題","全部の回答","学習中","学習済み"]
+message_list = ["全部の問題","全部の答え","学習中","学習済み"]
 
 # カード数のカウント
 all_card = Card.objects.all().count()
