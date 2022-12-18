@@ -28,3 +28,4 @@ urllib3==1.26.13
 whitenoise==6.2.0
 yarl==1.8.1
 psycopg2==2.7.6.1
+Python==3.8.10
