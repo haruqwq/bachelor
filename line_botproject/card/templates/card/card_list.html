@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 
-{% block title %}カード一覧{% endblock %}
+{% block h1 %}暗記カード一覧{% endblock %}
   
 {% block content %}
   {% for item in object_list %}
-  <div class="card">
-    <h5 class="card-header">問題：{{ item.question }}</h5>
-    <div class="card-body">
-      <h6 class="card-text">答え：{{ item.answer }}</h6>
-      <a href="{% url 'detail-card' item.pk %}" class="btn btn-primary">詳細へ</a>
+  <div class="p-4 m-4 bg-light botder border-success rounded">
+    <h5 class="text-success">問題：{{ item.question }}</h5>
+    <h6>答え：{{ item.answer }}</h6>
+    <h6>カテゴリ：{{ item.category }}</h6>
+    <div class="mt-3">
+      <a href="{% url 'detail-card' item.pk %}">詳細へ</a>
     </div>
   </div>
   {% endfor %}

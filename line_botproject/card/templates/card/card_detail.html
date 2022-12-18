@@ -1,15 +1,13 @@
 {% extends 'base.html' %}
-
-{% block title %}カード詳細{% endblock %}
-  
+{% block title %}{{ object.question }}{% endblock %}
+{% block h1 %}暗記カード詳細{% endblock %}
 {% block content %}
-  <div class="card">
-    <h5 class="card-header">{{ object.question }}</h5>
-    <div class="card-body">
-      <a href="{% url 'list-card' %}" class="btn btn-primary">一覧へ</a>
-      <a href="{% url 'update-card' object.pk %}" class="btn btn-primary">編集する</a>
-      <a href="{% url 'detail-card' object.pk %}" class="btn btn-primary">削除する</a>
-      <h6 class="card-title">{{ object.question }}</h6>
-    </div>
+  <div class="p-4 m-4 bg-light border border-success rounded">
+    <h5 class="text-success">問題：{{ object.question }}</h2>
+    <h6 class="card-title">答え：{{ object.answer }}</h6>
+    <h6 class="card-review">復習回数：{{ object.review }}</h6>
+    <a href="{% url 'list-card' %}" class="btn btn-primary">一覧へ</a>
+    <a href="{% url 'update-card' object.pk %}" class="btn btn-primary">編集する</a>
+    <a href="{% url 'delete-card' object.pk %}" class="btn btn-primary">削除する</a>
   </div>
 {% endblock content%}

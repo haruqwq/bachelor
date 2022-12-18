@@ -8,7 +8,7 @@ from line_bot import notice_message
 scheduler = BackgroundScheduler()
 scheduler.add_jobstore(DjangoJobStore(), "default")
 
-@register_job(scheduler, "interval", seconds = 300, id = 'test_job', replace_existing=True)
+@register_job(scheduler, "interval", seconds = 15, id = 'test_job', replace_existing=True)
 def test_job():
     print("test")
     notice_message.periodic_execution()

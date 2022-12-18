@@ -23,7 +23,7 @@ def answer_check(ID):
     post_dict = model_to_dict(post)
     # 辞書型からJSON型の文字列に変換
     json.dumps(post_dict)
-    message = ['選択肢1'+post.answer_fake1, '選択肢2'+post.answer_fake2, '選択肢3'+post.answer]
+    message = ['選択肢1:'+post.answer_fake1, '選択肢2:'+post.answer_fake2, '選択肢3:'+post.answer]
     for i in range (0,3):
         line_bot_api.broadcast(TextSendMessage(text = message[i]))
 
@@ -73,46 +73,46 @@ def spend_time(spend_check, i):
     # else:
     #     print("作成直後")    
     # 開発用の時間
-    one_minute = 60
+    one_minute = 6
     post = Card.objects.get(id=message_creater.m[i])
-    if spend_check > one_minute*60 and post.review>=5:
+    if spend_check > one_minute*60 and post.review>=5 and post.review != 7:
         post.review=6
         post.save()
-        print("1時間経過:" + post.question)
+        print("1ヶ月経過:" + post.question)
         print("学習回数:" + str(post.review))
         line_bot_api.broadcast(TextSendMessage(text = "6回目の学習:\n" + post.question))
     elif spend_check > one_minute*50:
         post.review=5
         post.save()
-        print("50分経過:" + post.question)
+        print("2週間経過:" + post.question)
         print("学習回数:" + str(post.review))
         line_bot_api.broadcast(TextSendMessage(text = "5回目の学習:\n" + post.question))
         answer_check(message_creater.m[i])
     elif spend_check > one_minute*40:
         post.review=4
         post.save()
-        print("40分経過:" + post.question)
+        print("1週間経過:" + post.question)
         print("学習回数:" + str(post.review))
         line_bot_api.broadcast(TextSendMessage(text = "4回目の学習:\n" + post.question))
         answer_check(message_creater.m[i])
     elif spend_check > one_minute*30:
         post.review=3
         post.save()
-        print("30分経過:" + post.question)
+        print("2日経過:" + post.question)
         print("学習回数:" + str(post.review))
         line_bot_api.broadcast(TextSendMessage(text = "3回目の学習:\n" + post.question))
         answer_check(message_creater.m[i])
     elif spend_check > one_minute*20:
         post.review=2
         post.save()
-        print("20分経過:" + post.question)
+        print("1日経過:" + post.question)
         print("学習回数:" + str(post.review))
         line_bot_api.broadcast(TextSendMessage(text = "2回目の学習:\n" + post.question))
         answer_check(message_creater.m[i])
     elif spend_check > one_minute*10:
         post.review=1
         post.save()
-        print("10分経過:" + post.question)
+        print("1時間経過:" + post.question)
         print("学習回数:" + str(post.review))
         line_bot_api.broadcast(TextSendMessage(text = "1回目の学習:\n" + post.question))
         answer_check(message_creater.m[i])

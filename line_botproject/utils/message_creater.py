@@ -37,15 +37,14 @@ def isint(s):
     else:
         return True
 
-message_list = ["全部の問題","全部の答え","学習中","学習済み"]
-
 # カード数のカウント
 all_card = Card.objects.all().count()
-
 # データベースにあるidの判定
 all = Card.objects.all().values("id")
 all_str = str(all)
 m = re.findall(r'\d+', all_str)
+
+message_list = ["全部の問題","全部の答え","学習中","学習済み", '勉強', 'プログラミング', 'その他']
 
 def last_check(message, reviews, answers):
     for i in range(0,all_card):
@@ -63,6 +62,30 @@ def check_review_study(reviews):
         if 0 <= reviews and reviews < 7:
             return True
         elif reviews == 7:
+            return False
+
+def check_study(categories):
+    for i in range(0,all_card):
+        print(categories)
+        if categories == 'study':
+            return True
+        else:
+            return False
+
+def check_prog(prog):
+    for i in range(0,all_card):
+        print(prog)
+        if prog == 'programming':
+            return True
+        else:
+            return False
+
+def check_other(other):
+    for i in range(0,all_card):
+        print(other)
+        if other == 'other':
+            return True
+        else:
             return False
 
 def create_single_text_message(message):
@@ -93,6 +116,33 @@ def create_single_text_message(message):
         # 辞書型からJSON型の文字列に変換
         json.dumps(post_dict)
         answers.append(post_dict['answer'])
+
+    categories = []
+    for i in range(0,all_card):
+        post = Card.objects.get(id=m[i])
+        # ディクショナリ型に変換
+        post_dict = model_to_dict(post)
+        # 辞書型からJSON型の文字列に変換
+        json.dumps(post_dict)
+        categories.append(post_dict['category'])
+
+    progs = []
+    for i in range(0,all_card):
+        post = Card.objects.get(id=m[i])
+        # ディクショナリ型に変換
+        post_dict = model_to_dict(post)
+        # 辞書型からJSON型の文字列に変換
+        json.dumps(post_dict)
+        progs.append(post_dict['category'])
+
+    others = []
+    for i in range(0,all_card):
+        post = Card.objects.get(id=m[i])
+        # ディクショナリ型に変換
+        post_dict = model_to_dict(post)
+        # 辞書型からJSON型の文字列に変換
+        json.dumps(post_dict)
+        others.append(post_dict['category'])
     
     if message == message_list[0]:
         message+=':'
@@ -144,6 +194,45 @@ def create_single_text_message(message):
             ]
         return test_message
 
+    elif message == message_list[4]:
+        message+=':'
+        for i in range(0,all_card):
+            if check_study(categories[i]):
+                print("ok")
+                message+='\n\n'+questions[i]
+        test_message = [
+                {
+                    'type': 'text',
+                    'text': message
+                }
+            ]
+        return test_message
+
+    elif message == message_list[5]:
+        message+=':'
+        for i in range(0,all_card):
+            if check_prog(categories[i]):
+                message+='\n\n'+questions[i]
+        test_message = [
+                {
+                    'type': 'text',
+                    'text': message
+                }
+            ]
+        return test_message
+
+    elif message == message_list[6]:
+        message+=':'
+        for i in range(0,all_card):
+            if check_other(categories[i]):
+                message+='\n\n'+questions[i]
+        test_message = [
+                {
+                    'type': 'text',
+                    'text': message
+                }
+            ]
+        return test_message
     elif isint(message)==True and message in m:
         message_int = int(message)
 
