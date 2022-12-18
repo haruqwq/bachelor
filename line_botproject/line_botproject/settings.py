@@ -1,4 +1,5 @@
 import os
+import django_heroku
 from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
@@ -21,9 +22,6 @@ ALLOWED_HOSTS = ["ht20a115bachelor.herokuapp.com"]
 #[".ngrok.io","127.0.0.1"]
 
 # Application definition
-
-
-
 
 
 INSTALLED_APPS = [
