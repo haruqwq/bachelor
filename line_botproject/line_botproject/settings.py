@@ -22,6 +22,10 @@ ALLOWED_HOSTS = ["ht20a115bachelor.herokuapp.com"]
 
 # Application definition
 
+
+
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
